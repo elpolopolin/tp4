@@ -1,30 +1,56 @@
 import React from 'react'
+import { useState } from 'react';
+import Citas from './Citas';
+import { eventWrapper } from '@testing-library/user-event/dist/utils';
+// import {useForm} from "react-hook-form"  Libreria para usar forms pero cre oq no se podia usar asi que la achie.
 
 export default function Formulario() {
     //hacer con hook copiar de practica de flecha subida en home 5ib efsi
-   
-        const mostrarAlert = () => {
-          let Respuesta = [
-            {Nombre: document.getElementById("nombreMascota"), NombreDueño: document.getElementById("nombreDueño"), Fecha: document.getElementById("Fecha"), Hora: document.getElementById("Hora"), Sintomas: document.getElementById("Sintomas")}
-          ]
-          console.log(Respuesta.Nombre);
-        };
-      
+    const [datos, estableceDatos] = useState('');
 
+
+
+        const [mascota, setMascota] = useState("");
+        const [propietario, setPropietario] = useState("");
+        const [fecha, setFecha] = useState(new Date());
+        const [hora, setHora] = useState("");
+        const [sintomas, setSintomas] = useState("");
+      
+   
+
+
+      const handleForm = (event) => {
+        event.preventDefault();
+
+        console.log(mascota);
+        console.log(propietario);
+        console.log(fecha);
+        console.log(hora);
+        console.log(sintomas);
+
+        return mascota;
+
+      }
+
+      const padreAHijo = () => {
+        estableceDatos("Esta es la data del componente Padre al componente Hijo.");
+      }
+
+      
   return (
     <div>
-        <form>
+        <form onSubmit={handleForm}>
           <label>Nombre Mascota</label>
-          <input type="text" name="mascota" id='nombreMascota' className='u-full-width' placeholder="Nombre Mascota" />
+          <input type="text" name="mascota" onChange={(e) => setMascota(e.target.value)} id='nombreMascota' className='u-full-width' placeholder="Nombre Mascota" />
           <label>Nombre Dueño</label>
-          <input type="text" name="propietario" id='nombreDueño' className='u-full-width' placeholder="Nombre dueño de la mascota" />
+          <input type="text" name="propietario" onChange={(e) => setPropietario(e.target.value)} id='nombreDueño' className='u-full-width' placeholder="Nombre dueño de la mascota" />
           <label>Fecha</label>
-          <input type="date" name="fecha" id='Fecha' className='u-full-width' />
+          <input type="date" name="fecha" onChange={(e) => setFecha(e.target.value)} id='Fecha' className='u-full-width' />
           <label>hora</label>
-          <input type="time" name="hora" id='Hora' className='u-full-width' />
+          <input type="time" name="hora" onChange={(e) => setHora(String(e.target.value))}  id='Hora' className='u-full-width' /> 
           <label>Sintomas</label>
-          <textarea name="sintomas" id='Sintomas' className="u-full-width"></textarea> 
-          <button type="submit" onClick={()=>mostrarAlert()} className="u-full-width button-primary">Agregar Cita</button>
+          <textarea name="sintomas" onChange={(e) => setSintomas(e.target.value)} id='Sintomas' className="u-full-width"></textarea> 
+          <button type="submit" className="u-full-width button-primary">Agregar Cita</button>
         </form>
         
     </div>

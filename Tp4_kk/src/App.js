@@ -17,7 +17,7 @@ function App() {
 			</div>
 			<div className="one-half column">
 				<h2>Administra tus citas</h2>
-				<Citas/>
+				 <Citas/>
         </div>
 		</div>
 	</div>
