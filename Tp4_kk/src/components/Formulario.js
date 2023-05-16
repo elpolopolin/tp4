@@ -20,23 +20,32 @@ export default function Formulario() {
 
 
       const handleForm = (event) => {
+       
         event.preventDefault();
 
-        console.log(mascota);
-        console.log(propietario);
-        console.log(fecha);
-        console.log(hora);
-        console.log(sintomas);
+        const data = [
+          {Mascota:mascota,Propietario:propietario,Fecha:fecha, Hora: hora, Sintomas: sintomas}
+          ];
+          estableceDatos(data);
 
-        return mascota;
+        if (mascota === "" || propietario === "" || fecha === "" || hora === "" || sintomas === "")
+        {
+          console.log("error");
+        }
+        else {
 
+          
+            
+            
+            console.log(datos);
+            
+        }
+        
+       
       }
 
-      const padreAHijo = () => {
-        estableceDatos("Esta es la data del componente Padre al componente Hijo.");
-      }
+  
 
-      
   return (
     <div>
         <form onSubmit={handleForm}>
