@@ -1,12 +1,13 @@
 import React from 'react'
-import Formulario from './Formulario'
-export default function Citas() {
+import Formulario from './Formulario';
+import datos2 from './Formulario'
 
 
-//intento de sacar los valores que saque en formulario para ponerlos en este componente pero no se como
+export default function Citas({datos2}) {
+
 const prueba = (event) => {
     const mascota = Formulario.mascota;
-    console.log("indones " + mascota);
+    console.log("indones " + datos2.Mascota);
 }
 
             return (

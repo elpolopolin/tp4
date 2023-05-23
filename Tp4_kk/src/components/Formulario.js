@@ -1,53 +1,50 @@
 import React from 'react'
 import { useState } from 'react';
-import Citas from './Citas';
+import Citas from './Citas'; //hijo
 import { eventWrapper } from '@testing-library/user-event/dist/utils';
 // import {useForm} from "react-hook-form"  Libreria para usar forms pero cre oq no se podia usar asi que la achie.
 
 export default function Formulario() {
     //hacer con hook copiar de practica de flecha subida en home 5ib efsi
-    const [datos, estableceDatos] = useState('');
-
-
-
+        const [datos, estableceDatos] = useState('');
+        
+        const [datos2, estableceDatos2] = useState('');
         const [mascota, setMascota] = useState("");
         const [propietario, setPropietario] = useState("");
         const [fecha, setFecha] = useState(new Date());
         const [hora, setHora] = useState("");
         const [sintomas, setSintomas] = useState("");
-      
-   
-
-
-      const handleForm = (event) => {
-       
-        event.preventDefault();
 
         const data = [
           {Mascota:mascota,Propietario:propietario,Fecha:fecha, Hora: hora, Sintomas: sintomas}
           ];
-          estableceDatos(data);
+          
+
+      const handleForm = (event) => {
+       
+        event.preventDefault();
 
         if (mascota === "" || propietario === "" || fecha === "" || hora === "" || sintomas === "")
         {
           console.log("error");
         }
         else {
-
-          
-            
             
             console.log(datos);
             
         }
-        
        
       }
 
+      const padreAHijo = () => {
+        estableceDatos2(datos);
+      }
   
-
+      
   return (
+
     <div>
+      
         <form onSubmit={handleForm}>
           <label>Nombre Mascota</label>
           <input type="text" name="mascota" onChange={(e) => setMascota(e.target.value)} id='nombreMascota' className='u-full-width' placeholder="Nombre Mascota" />
@@ -59,7 +56,7 @@ export default function Formulario() {
           <input type="time" name="hora" onChange={(e) => setHora(String(e.target.value))}  id='Hora' className='u-full-width' /> 
           <label>Sintomas</label>
           <textarea name="sintomas" onChange={(e) => setSintomas(e.target.value)} id='Sintomas' className="u-full-width"></textarea> 
-          <button type="submit" className="u-full-width button-primary">Agregar Cita</button>
+          <button type="submit" onClick={() => estableceDatos(data)} className="u-full-width button-primary">Agregar Cita</button>
         </form>
         
     </div>
