@@ -4,41 +4,38 @@ import Citas from './Citas'; //hijo
 import { eventWrapper } from '@testing-library/user-event/dist/utils';
 // import {useForm} from "react-hook-form"  Libreria para usar forms pero cre oq no se podia usar asi que la achie.
 
-export default function Formulario() {
+export default function Formulario({onAgregarCita}) {
     //hacer con hook copiar de practica de flecha subida en home 5ib efsi
-        const [datos, estableceDatos] = useState('');
+        const [datos, estableceDatos] = useState([]);
         
-        const [datos2, estableceDatos2] = useState('');
+        const [id, setId] = useState(0);
         const [mascota, setMascota] = useState("");
         const [propietario, setPropietario] = useState("");
         const [fecha, setFecha] = useState(new Date());
         const [hora, setHora] = useState("");
         const [sintomas, setSintomas] = useState("");
 
-        const data = [
-          {Mascota:mascota,Propietario:propietario,Fecha:fecha, Hora: hora, Sintomas: sintomas}
-          ];
-          
+        const data = 
+        {Id: id, Mascota:mascota,Propietario:propietario,Fecha:fecha, Hora: hora, Sintomas: sintomas}
+        ;
 
       const handleForm = (event) => {
        
         event.preventDefault();
-
+       
         if (mascota === "" || propietario === "" || fecha === "" || hora === "" || sintomas === "")
         {
           console.log("error");
+          setId(id - 1);
         }
         else {
-            
-            console.log(datos);
-            
+           
+          onAgregarCita(data);   
         }
        
       }
 
-      const padreAHijo = () => {
-        estableceDatos2(datos);
-      }
+    
   
       
   return (
@@ -56,7 +53,7 @@ export default function Formulario() {
           <input type="time" name="hora" onChange={(e) => setHora(String(e.target.value))}  id='Hora' className='u-full-width' /> 
           <label>Sintomas</label>
           <textarea name="sintomas" onChange={(e) => setSintomas(e.target.value)} id='Sintomas' className="u-full-width"></textarea> 
-          <button type="submit" onClick={() => estableceDatos(data)} className="u-full-width button-primary">Agregar Cita</button>
+          <button type="submit" onClick={() => setId(id + 1)} className="u-full-width button-primary">Agregar Cita</button>
         </form>
         
     </div>
